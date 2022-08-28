@@ -1,8 +1,9 @@
 console.log('На выбор предоставляется четыре карты древнего +20');
 console.log('На выбор предоставляется один уровнь сложности +5');
 console.log('Карты замешиваются согласно правилам игры +40 баллов');
+console.log('Есть трекер текущего состояния колоды +20 баллов');
 
-console.log('Итого: 65 баллов');
+console.log('Итого: 85 баллов');
 
 import ancientsData from './data/ancients.js';
 
@@ -71,6 +72,7 @@ function getAzathoth(){
     i1=0;
     i2=0;
     i3=0;
+    lastCard.style.background=`none`;
 }
 
 cthulthu.addEventListener('click', getCthulthu);
@@ -96,6 +98,7 @@ function getCthulthu(){
     i1=0;
     i2=0;
     i3=0;
+    lastCard.style.background=`none`;
 }
 
 iogSothoth.addEventListener('click', getIogSothoth);
@@ -121,6 +124,7 @@ function getIogSothoth(){
     i1=0;
     i2=0;
     i3=0;
+    lastCard.style.background=`none`;
 }
 
 shubNiggurath.addEventListener('click', getShubNiggurath);
@@ -146,6 +150,7 @@ function getShubNiggurath(){
     i1=0;
     i2=0;
     i3=0;
+    lastCard.style.background=`none`;
 }
 
 medium.addEventListener('click', getMedium);
@@ -441,26 +446,54 @@ deck.addEventListener('click', getDeck);
 
 function getDeck() {
 
-    if (i1<=stage1.length){
-        lastCard.style.background=`url('./assets/MythicCards/${stage1[i1]}.png')`;
-        lastCard.style.backgroundSize='contain';
-        i1++;
-    }   
-    if (i2<=stage2.length && i1>stage1.length){
-        lastCard.style.background=`url('./assets/MythicCards/${stage2[i2]}.png')`;
-        lastCard.style.backgroundSize='contain';
-        i2++;
+    if(i1>=stage1.length && i2>=stage2.length && i3>=stage3.length){
+        lastCard.style.background='none';
     }  
-    if (i3<=stage3.length && i2>stage2.length && i1>stage1.length){
+
+    if (i3<stage3.length && i2>=stage2.length && i1>=stage1.length){
         lastCard.style.background=`url('./assets/MythicCards/${stage3[i3]}.png')`;
         lastCard.style.backgroundSize='contain';
+        if(stage3[i3].slice(0, 2)==='gr'){
+            green3.textContent--;
+        }
+        if(stage3[i3].slice(0, 2)==='br'){
+            brown3.textContent--;            
+        }
+        if(stage3[i3].slice(0, 2)==='bl'){
+            blue3.textContent--;
+        }
         i3++;
-    } 
-    if(i1>stage1.length && i2>stage2.length && i3>stage3.length){
-        lastCard.style.background='none';
+    }
 
-    }  
+    if (i2<stage2.length && i1>=stage1.length){
+        lastCard.style.background=`url('./assets/MythicCards/${stage2[i2]}.png')`;
+        lastCard.style.backgroundSize='contain';
+        if(stage2[i2].slice(0, 2)==='gr'){
+            green2.textContent--;
+        }
+        if(stage2[i2].slice(0, 2)==='br'){
+            brown2.textContent--;            
+        }
+        if(stage2[i2].slice(0, 2)==='bl'){
+            blue2.textContent--;
+        }
+        i2++;    
+    }
 
+    if (i1<stage1.length){
+        lastCard.style.background=`url('./assets/MythicCards/${stage1[i1]}.png')`;
+        lastCard.style.backgroundSize='contain';
+        if(stage1[i1].slice(0, 2)==='gr'){
+            green1.textContent--;
+        }
+        if(stage1[i1].slice(0, 2)==='br'){
+            brown1.textContent--;            
+        }
+        if(stage1[i1].slice(0, 2)==='bl'){
+            blue1.textContent--;
+        }
+        i1++;
+    }    
 
 }
 
