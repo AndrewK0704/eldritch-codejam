@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    
+    scroll-behavior: smooth;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./assets/home.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+}
+
+.ancients-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 25%;
+    height: 100%;
+}
+
+.azathoth{
+    margin-top: 20px; 
+    background-image: url('./assets/Ancients/Azathoth.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 390px;
+    width: 90%;
+}
+
+.cthulthu{
+    margin-top: 20px;
+    background-image: url('./assets/Ancients/Cthulthu.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 390px;
+    width: 90%;
+}
+
+.iogSothoth{
+    margin-top: 20px;
+    background-image: url('./assets/Ancients/IogSothoth.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 390px;
+    width: 90%;
+}
+
+.shubNiggurath{
+    margin-top: 20px;
+    background-image: url('./assets/Ancients/ShubNiggurath.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 390px;
+    width: 90%;
+}
+
+.difficulty-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 15%;
+}
+
+.medium{
+    font-size:1.5rem;
+    height: 40px;
+    width: 90%;
+    background-color: darkorange;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;
+}
+
+.deck-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 35%;
+    height: 100%;
+}
+
+.shuffle-button{
+    margin-top: 20px;
+    font-size:1.5rem;
+    height: 40px;
+    width: 90%;
+    background-color: darkorange;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;   
+}
+
+.deck{
+    margin-top: 20px;
+    background-image: url('./assets/mythicCardBackground.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 190px;
+    width: 130px;
+
+}
+
+.last-card{
+    margin-bottom: 20px;
+    background-image:none; 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 190px;
+    width: 130px;
+
+}
+
+.current-state {
+    display: flex;
+    flex-direction: column;
+    min-height: 30%;
+    width: 90%;
+}
+
+.stage-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;  
+    width: 90%;
+}
+
+.item1, .item2, .item3{
+    align-items: center;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.green1, .green2, .green3 {
+    background-color: green;
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.brown1, .brown2, .brown3 {
+    background-color:coral;
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.blue1, .blue2, .blue3 {
+    background-color:deepskyblue;
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.text{
+    font-size:1rem;
+    height: 20px;
+    width: 90%;
+    background-color: darkorange;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;   
+}
