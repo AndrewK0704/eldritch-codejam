@@ -1,9 +1,9 @@
 console.log('На выбор предоставляется четыре карты древнего +20');
 console.log('На выбор предоставляется один уровнь сложности +5');
+console.log('Карты замешиваются согласно правилам игры +40 баллов');
 
-console.log('Итого: 25 баллов');
+console.log('Итого: 65 баллов');
 
-import difficulties from './data/difficulties.js';
 import ancientsData from './data/ancients.js';
 
 const azathoth = document.querySelector('.azathoth');
@@ -40,6 +40,12 @@ let stage1=[];
 let stage2=[];
 let stage3=[];
 
+const deck = document.querySelector('.deck');
+const lastCard = document.querySelector('.last-card');
+let i1=0;
+let i2=0;
+let i3=0;
+
 /*-------------------------------------------------------------------*/
 
 azathoth.addEventListener('click', getAzathoth);
@@ -61,6 +67,10 @@ function getAzathoth(){
     blue1.textContent='0';
     blue2.textContent='0';
     blue3.textContent='0';
+
+    i1=0;
+    i2=0;
+    i3=0;
 }
 
 cthulthu.addEventListener('click', getCthulthu);
@@ -82,6 +92,10 @@ function getCthulthu(){
     blue1.textContent='0';
     blue2.textContent='0';
     blue3.textContent='0';
+
+    i1=0;
+    i2=0;
+    i3=0;
 }
 
 iogSothoth.addEventListener('click', getIogSothoth);
@@ -103,6 +117,10 @@ function getIogSothoth(){
     blue1.textContent='0';
     blue2.textContent='0';
     blue3.textContent='0';
+
+    i1=0;
+    i2=0;
+    i3=0;
 }
 
 shubNiggurath.addEventListener('click', getShubNiggurath);
@@ -124,6 +142,10 @@ function getShubNiggurath(){
     blue1.textContent='0';
     blue2.textContent='0';
     blue3.textContent='0';
+
+    i1=0;
+    i2=0;
+    i3=0;
 }
 
 medium.addEventListener('click', getMedium);
@@ -216,13 +238,17 @@ function getShuffleButton(){
                 arrBlue[i]=getRandomNum(12);
                 i++;
             }
-        }        
-     
+        }           
 
-        console.log(arrGreen)
-        console.log(arrBrown)
-        console.log(arrBlue)
-
+        for(let i=0;i<arrGreen.length; i++){
+            arrGreen[i]='green/green'+arrGreen[i];
+        }
+        for(let i=0;i<arrBrown.length; i++){
+            arrBrown[i]='brown/brown'+arrBrown[i];
+        }
+        for(let i=0;i<arrBlue.length; i++){
+            arrBlue[i]='blue/blue'+arrBlue[i];
+        }
 
         stage1=[];
         flagRepeat=0;
@@ -257,17 +283,189 @@ function getShuffleButton(){
                     }
                 }   
             }
-            
             return arrStage;  
-
         }
-        console.log(stage1)
-    }
+        
+        stage2=[];
+        flagRepeat=0;
+        check=0;
 
+        stage2=setStage2(ancientsData[indexAncients-1].secondStage.greenCards, gr, arrGreen, stage1);
+        stage2=stage2.concat(setStage2(ancientsData[indexAncients-1].secondStage.brownCards, br, arrBrown, stage1));
+        stage2=stage2.concat(setStage2(ancientsData[indexAncients-1].secondStage.blueCards, bl, arrBlue, stage1));
+
+        function setStage2(valueStage, valueFull, arrColor, stage1){
+            let arrStage=[];
+            flagRepeat=0;
+            check=0;
+
+            if(valueStage!==0){ 
+                for(let i=0; i<valueStage; ){
+                    flagRepeat=0;
+                    if(arrStage.length!==0){
+                        check=getRandomNum(valueFull)-1;
+                        for(let j=0;j<arrStage.length; j++){
+                            if(arrStage[j]===arrColor[check]){
+                                flagRepeat=1;
+                            }
+                        }
+                        for(let j=0;j<stage1.length; j++){
+                            if(stage1[j]===arrColor[check]){
+                                flagRepeat=1;
+                            }
+                        }
+                        if (flagRepeat!==1){
+                            arrStage[i]=arrColor[check];
+                            i++;
+                        }
+                    } else {
+                        check=getRandomNum(valueFull)-1;
+                        for(let j=0;j<stage1.length; j++){
+                            if(stage1[j]===arrColor[check]){
+                                flagRepeat=1;
+                            }
+                        }
+                        if (flagRepeat!==1){
+                            arrStage[i]=arrColor[check];
+                            i++;
+                        }
+                    }
+                }   
+            }
+            return arrStage;  
+        }
+
+        stage3=[];
+        flagRepeat=0;
+        check=0;
+
+        stage3=setStage3(ancientsData[indexAncients-1].thirdStage.greenCards, gr, arrGreen, stage1, stage2);
+        stage3=stage3.concat(setStage3(ancientsData[indexAncients-1].thirdStage.brownCards, br, arrBrown, stage1, stage2));
+        stage3=stage3.concat(setStage3(ancientsData[indexAncients-1].thirdStage.blueCards, bl, arrBlue, stage1, stage2));
+
+        function setStage3(valueStage, valueFull, arrColor, stage1, stage2){
+            let arrStage=[];
+            flagRepeat=0;
+            check=0;
+
+            if(valueStage!==0){ 
+                for(let i=0; i<valueStage; ){
+                    flagRepeat=0;
+                    if(arrStage.length!==0){
+                        check=getRandomNum(valueFull)-1;
+                        for(let j=0;j<arrStage.length; j++){
+                            if(arrStage[j]===arrColor[check]){
+                                flagRepeat=1;
+                            }
+                        }
+                        for(let j=0;j<stage1.length; j++){
+                            if(stage1[j]===arrColor[check]){
+                                flagRepeat=1;
+                            }
+                        }
+                        for(let j=0;j<stage2.length; j++){
+                            if(stage2[j]===arrColor[check]){
+                                flagRepeat=1;
+                            }
+                        }
+                        if (flagRepeat!==1){
+                            arrStage[i]=arrColor[check];
+                            i++;
+                        }
+                    } else {
+                        check=getRandomNum(valueFull)-1;
+                        for(let j=0;j<stage1.length; j++){
+                            if(stage1[j]===arrColor[check]){
+                                flagRepeat=1;
+                            }
+                        }
+                        for(let j=0;j<stage2.length; j++){
+                            if(stage2[j]===arrColor[check]){
+                                flagRepeat=1;
+                            }
+                        }
+                        if (flagRepeat!==1){
+                            arrStage[i]=arrColor[check];
+                            i++;
+                        }
+                    }
+                }   
+            }
+            return arrStage;  
+        }
+
+        function shuffle(stage1) {
+            let arrStage=[];
+            flagRepeat=0;
+            check=0;
+
+            for(let i=0; i<stage1.length; ){
+                flagRepeat=0;
+                if(arrStage.length!==0){
+                    check=getRandomNum(stage1.length)-1;
+                    for(let j=0;j<arrStage.length; j++){
+                        if(arrStage[j]===stage1[check]){
+                            flagRepeat=1;
+                        }
+                    }
+                    if (flagRepeat!==1){
+                        arrStage[i]=stage1[check];
+                        i++;
+                    }
+                } else {
+                    arrStage[i]=stage1[getRandomNum(stage1.length)-1];
+                    i++;
+                }
+            }  
+            return arrStage;  
+            
+        }
+
+        stage1=shuffle(stage1);
+        stage2=shuffle(stage2);
+        stage3=shuffle(stage3);
+        
+        console.log('Первая стадия:',stage1);
+        console.log('Вторая стадия:',stage2);
+        console.log('Третья стадия:',stage3);
+
+    }
 
 }
 
 function getRandomNum(max) {
     return Math.floor(Math.random() * max)+1;
 }
+
+deck.addEventListener('click', getDeck);
+
+function getDeck() {
+
+    if (i1<=stage1.length){
+        lastCard.style.background=`url('./assets/MythicCards/${stage1[i1]}.png')`;
+        lastCard.style.backgroundSize='contain';
+        i1++;
+    }   
+    if (i2<=stage2.length && i1>stage1.length){
+        lastCard.style.background=`url('./assets/MythicCards/${stage2[i2]}.png')`;
+        lastCard.style.backgroundSize='contain';
+        i2++;
+    }  
+    if (i3<=stage3.length && i2>stage2.length && i1>stage1.length){
+        lastCard.style.background=`url('./assets/MythicCards/${stage3[i3]}.png')`;
+        lastCard.style.backgroundSize='contain';
+        i3++;
+    } 
+    if(i1>stage1.length && i2>stage2.length && i3>stage3.length){
+        lastCard.style.background='none';
+
+    }  
+
+
+}
+
+
+
+
+
 
